@@ -12,15 +12,16 @@ public class GameController : MonoBehaviour
     private Canvas conversationCanvas;
     private Canvas cookingPreludeCanvas;
     private Canvas ingredientCanvas;
-    private Canvas cookingCanvas;
 
     void Start()
     {
         orderCanvas = GameObject.Find("OrderCanvas").GetComponent<Canvas>();
         conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
+        cookingPreludeCanvas = GameObject.Find("CookingPreludeCanvas").GetComponent<Canvas>();
         ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
 
         DisableConversationCanvas();
+        DisableCookingPreludeCanvas();
         DisableIngredientCanvas();
     }
 
@@ -42,6 +43,16 @@ public class GameController : MonoBehaviour
     public void DisableConversationCanvas()
     {
         conversationCanvas.gameObject.SetActive(false);
+    }
+
+    public void EnableCookingPreludeCanvas()
+    {
+        cookingPreludeCanvas.gameObject.SetActive(true);
+    }
+
+    public void DisableCookingPreludeCanvas()
+    {
+        cookingPreludeCanvas.gameObject.SetActive(false);
     }
 
     public void EnableIngredientCanvas()
