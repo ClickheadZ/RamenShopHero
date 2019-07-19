@@ -23,6 +23,7 @@ public class GameController : MonoBehaviour
     private int dialogueCounter;
     private Text dialogueBox;
     private bool noddingPaused;
+    private Sprite characterSprite;
     #endregion
 
     private int ingredientNumber;
@@ -36,8 +37,10 @@ public class GameController : MonoBehaviour
         postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
         levelFinishedCanvas = GameObject.Find("LevelFinishedCanvas").GetComponent<Canvas>();
         characterData = GetComponent<CharacterData>();
+
         dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
         noddingPaused = false;
+        characterSprite = GameObject.Find("CharacterSprite").GetComponent<Sprite>();
 
         ingredientNumber = -1;
 
@@ -135,20 +138,27 @@ public class GameController : MonoBehaviour
         {
             if (dialogueCounter < characterData.IntroDialogueParagraphs.Length)
             {
-                dialogueBox.text = dialogueBox.text + " " + characterData.IntroDialogueParagraphs[dialogueCounter];
+                dialogueBox.text = dialogueBox.text + "\n" + characterData.IntroDialogueParagraphs[dialogueCounter];
 
                 if (dialogueCounter == characterData.ParagraphToPicture)
                 {
-                    StartCoroutine(WaitingPapaya());
+                    StartCoroutine(WaitingBeforeClick());
 
-                    IEnumerator WaitingPapaya()
+                    IEnumerator WaitingBeforeClick()
                     {
                         noddingPaused = true;
-                        yield return new WaitForSecondsRealtime(5);
+                        yield return new WaitForSecondsRealtime(4);
                         noddingPaused = false;
                     }
 
-                    //SHOW SPRITE HERE
+                    StartCoroutine(WaitingForPicture());
+
+                    IEnumerator WaitingForPicture()
+                    {
+                        //SHOW characterSprite HERE
+                        yield return new WaitForSecondsRealtime(3);
+                        //HIDE characterSprite HERE
+                    }
                 }
 
                 dialogueCounter++;
