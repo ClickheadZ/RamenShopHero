@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CharacterData : MonoBehaviour
 {
-    public Sprite CharacterSprite;
-    public string Emotion;
-    public string IntroDialogue;
-    public string SpecialDialogue;
+    public int Emotion;
+    //public Sprite CharacterSprite;
+    public int ParagraphToPicture;
+    public string[] IntroDialogueParagraphs;
+    public string[] SpecialDialogueParagraphs;
 }

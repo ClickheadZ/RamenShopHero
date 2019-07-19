@@ -17,6 +17,14 @@ public class GameController : MonoBehaviour
     private Canvas levelFinishedCanvas;
     #endregion
 
+    private CharacterData characterData;
+
+    #region Dialogue Variables
+    private int dialogueCounter;
+    private Text dialogueBox;
+    private bool noddingPaused;
+    #endregion
+
     private int ingredientNumber;
 
     void Start()
@@ -27,6 +35,9 @@ public class GameController : MonoBehaviour
         ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
         postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
         levelFinishedCanvas = GameObject.Find("LevelFinishedCanvas").GetComponent<Canvas>();
+        characterData = GetComponent<CharacterData>();
+        dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
+        noddingPaused = false;
 
         ingredientNumber = -1;
 
@@ -34,6 +45,7 @@ public class GameController : MonoBehaviour
         DisableCookingPreludeCanvas();
         DisableIngredientCanvas();
         DisablePostRamenCanvas();
+        DisableLevelFinishedCanvas();
     }
 
     #region Canvas manipulation
@@ -109,9 +121,43 @@ public class GameController : MonoBehaviour
         Debug.Log(Scoring.Score);
     }
 
+    //Prints the first dialogue paragraph that the character has.
     public void HandleDialogue()
     {
-        //this code handles the dialogue portion of the game
+        dialogueBox.text = characterData.IntroDialogueParagraphs[0];
+        dialogueCounter = 1;
+    }
+
+    //Prints the next dialogue paragraph. If the dialogueCounter matches the paraph we want a picture for, waits a few seconds before showing the sprite
+    public void NodDialogue()
+    {
+        if(noddingPaused == false)
+        {
+            if (dialogueCounter < characterData.IntroDialogueParagraphs.Length)
+            {
+                dialogueBox.text = dialogueBox.text + " " + characterData.IntroDialogueParagraphs[dialogueCounter];
+
+                if (dialogueCounter == characterData.ParagraphToPicture)
+                {
+                    StartCoroutine(WaitingPapaya());
+
+                    IEnumerator WaitingPapaya()
+                    {
+                        noddingPaused = true;
+                        yield return new WaitForSecondsRealtime(5);
+                        noddingPaused = false;
+                    }
+
+                    //SHOW SPRITE HERE
+                }
+
+                dialogueCounter++;
+            } else
+            {
+                DisableConversationCanvas();
+                EnableOrderCanvas();
+            }
+        }
     }
 
     #region Cooking Functions
