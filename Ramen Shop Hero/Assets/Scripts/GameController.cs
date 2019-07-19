@@ -64,4 +64,14 @@ public class GameController : MonoBehaviour
     {
         ingredientCanvas.gameObject.SetActive(false);
     }
+
+    public void IncreaseScoreBy10()
+    {
+        Scoring.Score += 10;
+    }
+
+    public void ShowScore()
+    {
+        Debug.Log(Scoring.Score);
+    }
 }

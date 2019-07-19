@@ -18,6 +18,11 @@ public class SceneSelector : MonoBehaviour
         SceneManager.LoadScene("Level1");
     }
 
+    public void LoadLevel(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
+    }
+
     public void GoCredits()
     {
         SceneManager.LoadScene("Credits");

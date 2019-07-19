@@ -12,6 +12,7 @@ public static class Scoring
         {
             return score;
         }
+
         set
         {
             score = value;
