@@ -114,7 +114,7 @@ MonoBehaviour:
   m_MinSize: {x: 881, y: 492}
   m_MaxSize: {x: 16006, y: 14042}
   vertical: 0
-  controlID: 137
+  controlID: 2754
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 492}
   m_MaxSize: {x: 12005, y: 14042}
   vertical: 1
-  controlID: 79
+  controlID: 2755
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 605, y: 221}
   m_MaxSize: {x: 12005, y: 4021}
   vertical: 0
-  controlID: 80
+  controlID: 2756
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -324,12 +324,19 @@ MonoBehaviour:
     width: 525
     height: 511
   m_ViewDataDictionary: {fileID: 0}
-  m_VSyncEnabled: 0
+  m_PreviewName: GameView
+  m_ShowGizmos: 0
+  m_TargetDisplay: 0
+  m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
+  m_TargetSize: {x: 1024, y: 768}
+  m_TextureFilterMode: 0
+  m_TextureHideFlags: 61
+  m_RenderIMGUI: 1
   m_MaximizeOnPlay: 0
+  m_VSyncEnabled: 0
   m_Gizmos: 0
   m_Stats: 0
   m_SelectedSizes: 06000000000000000000000000000000000000000000000000000000000000000000000000000000
-  m_TargetDisplay: 0
   m_ZoomArea:
     m_HRangeLocked: 0
     m_VRangeLocked: 0
@@ -344,8 +351,8 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 0
-    m_VSlider: 0
+    m_HSlider: 1
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -355,30 +362,29 @@ MonoBehaviour:
     m_DrawArea:
       serializedVersion: 2
       x: 0
-      y: 20
+      y: 21
       width: 525
-      height: 491
-    m_Scale: {x: 0.5126953, y: 0.5126953}
-    m_Translation: {x: 262.5, y: 245.5}
+      height: 490
+    m_Scale: {x: 0.70969003, y: 0.70969003}
+    m_Translation: {x: 326.36145, y: 250.479}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -512
-      y: -478.84192
-      width: 1024
-      height: 957.68384
+      x: -459.86478
+      y: -352.9414
+      width: 739.7596
+      height: 690.44226
     m_MinimalGUI: 1
   m_defaultScale: 0.5126953
-  m_TargetTexture: {fileID: 0}
-  m_CurrentColorSpace: 0
   m_LastWindowPixelSize: {x: 525, y: 511}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
+  m_RenderTexture: {fileID: 0}
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -408,9 +414,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: d4420000
       m_LastClickedID: 0
-      m_ExpandedIDs: 2ce6ffff76e6ffff2ef7ffff78fbffffac3300000a3400006a340000ae340000
+      m_ExpandedIDs: 2ee0ffff4ae0ffff66e0ffff82e0ffff9ee0ffffbae0ffffdae0fffff6e0ffff18e1fffface5ffffc8e5ffffe4e5ffff0ae6ffffb0e8ffffe64e00000a4f0000244f0000344f000026500000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -470,9 +476,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 499.20993, y: 384.40582, z: -110.36004}
+    m_Target: {x: 895.9793, y: 59.184, z: -9.396091}
     speed: 2
-    m_Value: {x: 499.20993, y: 384.40582, z: -110.36004}
+    m_Value: {x: 896.32684, y: 59.956314, z: -8.795217}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -480,6 +486,7 @@ MonoBehaviour:
     section: Shading Mode
   m_ValidateTrueMetals: 0
   m_DoValidateTrueMetals: 0
+  m_ExposureSliderValue: 0
   m_SceneViewState:
     showFog: 1
     showMaterialUpdate: 0
@@ -505,9 +512,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 732.4391
+    m_Target: 159.17601
     speed: 2
-    m_Value: 732.4391
+    m_Value: 166.67645
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -604,14 +611,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets/Scenes
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Documents\GIT REPOS\Ramen Hero\RamenHero\Ramen Shop Hero
+  m_LastProjectPath: D:\RamenShopHero\Ramen Shop Hero
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 203a0000
-    m_LastClickedID: 14880
-    m_ExpandedIDs: 00000000aa35000000ca9a3b
+    m_SelectedIDs: 34400000
+    m_LastClickedID: 16436
+    m_ExpandedIDs: 000000000c40000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -639,7 +646,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000aa350000
+    m_ExpandedIDs: 000000000c40000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
