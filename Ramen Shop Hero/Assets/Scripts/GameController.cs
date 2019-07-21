@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 
     #region Canvas references
     private Canvas orderCanvas;
-    private Canvas conversationCanvas;
+    [SerializeField] Canvas conversationCanvas;
     private Canvas cookingPreludeCanvas;
     private Canvas ingredientCanvas;
     private Canvas postRamenCanvas;
@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
         orderCanvas = GameObject.Find("OrderCanvas").GetComponent<Canvas>();
-        conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
+        //conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
         cookingPreludeCanvas = GameObject.Find("CookingPreludeCanvas").GetComponent<Canvas>();
         ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
         postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
