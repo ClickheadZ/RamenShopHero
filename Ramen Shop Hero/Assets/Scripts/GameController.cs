@@ -23,10 +23,11 @@ public class GameController : MonoBehaviour
     private int dialogueCounter;
     private Text dialogueBox;
     private bool noddingPaused;
-    private Sprite characterSprite;
+    private Sprite flavourSprite;
     #endregion
 
     private int ingredientNumber;
+    private int score;
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class GameController : MonoBehaviour
 
         dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
         noddingPaused = false;
-        characterSprite = GameObject.Find("CharacterSprite").GetComponent<Sprite>();
+        flavourSprite = characterData.FlavourSprite;
 
         ingredientNumber = -1;
 
@@ -114,11 +115,13 @@ public class GameController : MonoBehaviour
     }
     #endregion
 
+    //Test function
     public void IncreaseScoreBy10()
     {
         Scoring.Score += 10;
     }
 
+    //Test function
     public void ShowScore()
     {
         Debug.Log(Scoring.Score);
@@ -155,9 +158,9 @@ public class GameController : MonoBehaviour
 
                     IEnumerator WaitingForPicture()
                     {
-                        //SHOW characterSprite HERE
+                        //SHOW flavourSprite HERE
                         yield return new WaitForSecondsRealtime(3);
-                        //HIDE characterSprite HERE
+                        //HIDE flavourSprite HERE
                     }
                 }
 
@@ -200,6 +203,26 @@ public class GameController : MonoBehaviour
             DisableIngredientCanvas();
             EnablePostRamenCanvas();
         }
+    }
+
+    //This function calculates the number of stars that the player gets for this level, and updates the total score as well.
+    public void ScoreCalculator()
+    {
+        score = Mathf.Abs( ingredientNumber - characterData.Emotion );
+
+        //This gives us a number between 0 and 8, which is a spread of 9, but we want it to be between 1 and 5, for a spread of 5.
+
+        score += 1;
+        score /= (9 / 5);
+
+        //Now we have numbers between 0.5555 and 5
+        //If we add to it 1-(5/9) and then round to nearest int, all our values will be between 1 and 5
+
+        score += (1 - (5 / 9));
+        score = Mathf.RoundToInt(score);
+
+        Scoring.Score += score;
+
     }
     #endregion
 }
