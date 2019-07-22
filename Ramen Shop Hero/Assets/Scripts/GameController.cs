@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
 
     #region Dialogue Variables
     private int dialogueCounter;
+    private int characterCounter;
+    private int maxCharacterCount;
     private Text dialogueBox;
     private bool noddingPaused;
     private Sprite flavourSprite;
@@ -41,6 +43,8 @@ public class GameController : MonoBehaviour
 
         dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
         noddingPaused = false;
+        characterCounter = 0;
+        maxCharacterCount = 1000;
         flavourSprite = characterData.FlavourSprite;
 
         ingredientNumber = -1;
@@ -166,6 +170,54 @@ public class GameController : MonoBehaviour
 
                 dialogueCounter++;
             } else
+            {
+                DisableConversationCanvas();
+                EnableOrderCanvas();
+            }
+        }
+    }
+
+    public void BetterNodDialogue()
+    {
+        
+        if (noddingPaused == false)
+        {
+            if (dialogueCounter < characterData.IntroDialogueParagraphs.Length)
+            {
+                if (characterCounter + characterData.IntroDialogueParagraphs[dialogueCounter].Length < maxCharacterCount)
+                {
+                    dialogueBox.text = dialogueBox.text + "\n" + characterData.IntroDialogueParagraphs[dialogueCounter];
+                }
+                else
+                {
+                    dialogueBox.text = characterData.IntroDialogueParagraphs[dialogueCounter];
+                }
+
+                if (dialogueCounter == characterData.ParagraphToPicture)
+                {
+                    StartCoroutine(WaitingBeforeClick());
+
+                    IEnumerator WaitingBeforeClick()
+                    {
+                        noddingPaused = true;
+                        yield return new WaitForSecondsRealtime(4);
+                        noddingPaused = false;
+                    }
+
+                    StartCoroutine(WaitingForPicture());
+
+                    IEnumerator WaitingForPicture()
+                    {
+                        //SHOW flavourSprite HERE
+                        yield return new WaitForSecondsRealtime(3);
+                        //HIDE flavourSprite HERE
+                    }
+                }
+
+                characterCounter += characterData.IntroDialogueParagraphs[dialogueCounter].Length;
+                dialogueCounter++;
+            }
+            else
             {
                 DisableConversationCanvas();
                 EnableOrderCanvas();
