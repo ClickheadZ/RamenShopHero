@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     //Needs reference to each canvas
 
     #region Canvas references
-    private Canvas orderCanvas;
+    [SerializeField] Canvas orderCanvas;
     [SerializeField] Canvas conversationCanvas;
     private Canvas cookingPreludeCanvas;
     private Canvas ingredientCanvas;
@@ -33,8 +33,8 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        orderCanvas = GameObject.Find("OrderCanvas").GetComponent<Canvas>();
-        //conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
+        orderCanvas = GameObject.FindGameObjectWithTag("OrderCanvas").GetComponent<Canvas>();
+        conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
         cookingPreludeCanvas = GameObject.Find("CookingPreludeCanvas").GetComponent<Canvas>();
         ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
         postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         flavourSprite = characterData.FlavourSprite;
 
         ingredientNumber = -1;
-
+    
         DisableConversationCanvas();
         DisableCookingPreludeCanvas();
         DisableIngredientCanvas();
@@ -65,7 +65,16 @@ public class GameController : MonoBehaviour
 
     public void DisableOrderCanvas()
     {
-        orderCanvas.gameObject.SetActive(false);
+        if (orderCanvas != null)
+        {
+            orderCanvas.gameObject.SetActive(false);
+            print("Disabled OrderCanvas successfully");
+        }
+        else
+        {
+            print("Order canvas null");
+        }
+
     }
 
     public void EnableConversationCanvas()
