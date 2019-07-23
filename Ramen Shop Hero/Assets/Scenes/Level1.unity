@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -3112,8 +3113,28 @@ MonoBehaviour:
   - "The words \u201Clonely men caught staring at the great blaze\u201D echo in your
     mind."
   - Suddenly, as if he supernaturally took notice of his own presence in your deep
-    thoughts,  waves at you with a frangible smile.
+    thoughts, Takatsu waves at you with a frangible smile.
   - '"Ramen-san, hi there."'
+  - You nod curtly to your old friend.
+  - He leans over the counter, the sleeves of his suit tightening around his forearms
+    like a bracelet of snakes choking out the life of a little rodent.
+  - "\"Been a while\u2026 Sorry for being such a weirdo all of a sudden. I've had
+    a rough week, really.\""
+  - You look at him with concern and give him your whole attention.
+  - '"You know, the girl I was dating? Jenna Greens." '
+  - You nod.
+  - Takashi can barely speak. You can't hear his voice anymore, and he withdraws
+    to himself, seemingly muttering incomprehensible words.
+  - "\"We... We\u2019re not together anymore. It's over for us. She walked out on
+    me for good.\""
+  - What could you possibly reply to him? Words fail you, but you are the Ramen Shop
+    Hero, a man who knows the value of silence during these tough moments of life.
+    All you need is to be there, and to serve good ramen.
+  - 'You hear, in your spirit, your own words: "I will cook you a ramen so good that
+    you will never feel like crying again. No, you will cry tears of joy instead.
+    The memories of your girlfriend are important, but there are reasons in life
+    to rejoice more than our losses, reasons which, as small as a cup of ramen, are
+    worth living and fighting for."'
   SpecialDialogueParagraphs:
   - Suddenly, as if he supernaturally took notice of his own presence in your deep
     thoughts,  waves at you with a frangible smile.Suddenly, as if he supernaturally
@@ -3619,7 +3640,7 @@ RectTransform:
   m_GameObject: {fileID: 1119423346}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 316937183}
   m_RootOrder: 0
@@ -4237,7 +4258,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 974037445}
-        m_MethodName: NodDialogue
+        m_MethodName: BetterNodDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
