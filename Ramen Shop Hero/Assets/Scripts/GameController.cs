@@ -28,8 +28,11 @@ public class GameController : MonoBehaviour
     private Sprite flavourSprite;
     #endregion
 
+    private CurrentScreen currentScreen;
     private int ingredientNumber;
     private int score;
+
+    private enum CurrentScreen { Order, Dialogue, CookingPrelude, Ingredient, PostRamen, LevelFinished };
 
     void Start()
     {
@@ -56,6 +59,27 @@ public class GameController : MonoBehaviour
         DisableLevelFinishedCanvas();
     }
 
+    void Update()
+    {
+        switch(currentScreen)
+        {
+            case CurrentScreen.Dialogue:
+                {
+                    if(Input.GetKeyDown(KeyCode.Return) == true)
+                    {
+                        SingleNodDialogue();
+                    }
+                }
+                break;
+
+            default:
+                {
+                    
+                }
+                break;
+        }
+    }
+
     #region Canvas manipulation
 
     public void EnableOrderCanvas()
@@ -80,6 +104,7 @@ public class GameController : MonoBehaviour
     public void EnableConversationCanvas()
     {
         conversationCanvas.gameObject.SetActive(true);
+        currentScreen = CurrentScreen.Dialogue;
     }
 
     public void DisableConversationCanvas()
@@ -90,6 +115,7 @@ public class GameController : MonoBehaviour
     public void EnableCookingPreludeCanvas()
     {
         cookingPreludeCanvas.gameObject.SetActive(true);
+        currentScreen = CurrentScreen.CookingPrelude;
     }
 
     public void DisableCookingPreludeCanvas()
@@ -100,6 +126,7 @@ public class GameController : MonoBehaviour
     public void EnableIngredientCanvas()
     {
         ingredientCanvas.gameObject.SetActive(true);
+        currentScreen = CurrentScreen.Ingredient;
     }
 
     public void DisableIngredientCanvas()
@@ -110,6 +137,7 @@ public class GameController : MonoBehaviour
     public void EnablePostRamenCanvas()
     {
         postRamenCanvas.gameObject.SetActive(true);
+        currentScreen = CurrentScreen.PostRamen;
     }
 
     public void DisablePostRamenCanvas()
@@ -120,6 +148,7 @@ public class GameController : MonoBehaviour
     public void EnableLevelFinishedCanvas()
     {
         levelFinishedCanvas.gameObject.SetActive(true);
+        currentScreen = CurrentScreen.LevelFinished;
     }
 
     public void DisableLevelFinishedCanvas()
@@ -129,17 +158,12 @@ public class GameController : MonoBehaviour
     #endregion
 
     //Test function
-    public void IncreaseScoreBy10()
-    {
-        Scoring.Score += 10;
-    }
-
-    //Test function
     public void ShowScore()
     {
         Debug.Log(Scoring.Score);
     }
 
+    #region Dialogue functions
     //Prints the first dialogue paragraph that the character has.
     public void HandleDialogue()
     {
@@ -273,6 +297,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region Cooking Functions
 
