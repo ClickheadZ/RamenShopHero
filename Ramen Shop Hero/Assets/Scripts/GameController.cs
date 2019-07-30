@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
         dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
         noddingPaused = false;
         characterCounter = 0;
-        maxCharacterCount = 1000;
+        maxCharacterCount = 550;
         flavourSprite = characterData.FlavourSprite;
 
         ingredientNumber = -1;
@@ -186,6 +186,45 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void SingleNodDialogue()
+    {
+        if (noddingPaused == false)
+        {
+            if (dialogueCounter < characterData.IntroDialogueParagraphs.Length)
+            {
+                dialogueBox.text = characterData.IntroDialogueParagraphs[dialogueCounter];
+
+                if (dialogueCounter == characterData.ParagraphToPicture)
+                {
+                    StartCoroutine(WaitingBeforeClick());
+
+                    IEnumerator WaitingBeforeClick()
+                    {
+                        noddingPaused = true;
+                        yield return new WaitForSecondsRealtime(4);
+                        noddingPaused = false;
+                    }
+
+                    StartCoroutine(WaitingForPicture());
+
+                    IEnumerator WaitingForPicture()
+                    {
+                        //SHOW flavourSprite HERE
+                        yield return new WaitForSecondsRealtime(3);
+                        //HIDE flavourSprite HERE
+                    }
+                }
+
+                dialogueCounter++;
+            }
+            else
+            {
+                DisableConversationCanvas();
+                EnableOrderCanvas();
+            }
+        }
+    }
+
     public void BetterNodDialogue()
     {
         
@@ -200,6 +239,7 @@ public class GameController : MonoBehaviour
                 else
                 {
                     dialogueBox.text = characterData.IntroDialogueParagraphs[dialogueCounter];
+                    characterCounter = 0;
                 }
 
                 if (dialogueCounter == characterData.ParagraphToPicture)
