@@ -11,10 +11,13 @@ public class GameController : MonoBehaviour
     #region Canvas references
     [SerializeField] Canvas orderCanvas;
     [SerializeField] Canvas conversationCanvas;
-    private Canvas cookingPreludeCanvas;
-    private Canvas ingredientCanvas;
-    private Canvas postRamenCanvas;
-    private Canvas levelFinishedCanvas;
+    [SerializeField] Canvas workingMenuCanvas;    
+    [SerializeField] Canvas cookingPreludeCanvas;
+    [SerializeField] Canvas ingredientCanvas;
+    [SerializeField] Canvas postRamenCanvas;
+    [SerializeField] Canvas levelFinishedCanvas;
+    [SerializeField] Canvas gameMenuCanvas; 
+       
     #endregion
 
     private CharacterData characterData;
@@ -36,14 +39,17 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        orderCanvas = GameObject.FindGameObjectWithTag("OrderCanvas").GetComponent<Canvas>();
+        orderCanvas = GameObject.Find("OrderCanvas").GetComponent<Canvas>();
         conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
+        workingMenuCanvas = GameObject.Find("WorkingMenuCanvas").GetComponent<Canvas>();
         cookingPreludeCanvas = GameObject.Find("CookingPreludeCanvas").GetComponent<Canvas>();
         ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
         postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
         levelFinishedCanvas = GameObject.Find("LevelFinishedCanvas").GetComponent<Canvas>();
-        characterData = GetComponent<CharacterData>();
+        gameMenuCanvas = GameObject.Find("GameMenuCanvas").GetComponent<Canvas>();
 
+
+        characterData = GetComponent<CharacterData>();
         dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
         noddingPaused = false;
         characterCounter = 0;
@@ -82,6 +88,43 @@ public class GameController : MonoBehaviour
 
     #region Canvas manipulation
 
+    public void EnableWorkingMenuCanvas()
+    {
+        workingMenuCanvas.gameObject.SetActive(true);
+    }
+
+    public void DisableWorkingMenuCanvas()
+    {
+        if (workingMenuCanvas == null)
+        {
+            workingMenuCanvas = GameObject.Find("WorkingMenuCanvas").GetComponent<Canvas>();
+            DisableWorkingMenuCanvas();
+        }
+        else
+        {
+            workingMenuCanvas.gameObject.SetActive(false);
+        }
+
+    }
+    public void EnableGameMenuCanvas()
+    {
+        gameMenuCanvas.gameObject.SetActive(true);
+    }
+
+    public void DisableGameMenuCanvas()
+    {
+        if (gameMenuCanvas == null)
+        {
+            gameMenuCanvas = GameObject.Find("GameMenuCanvas").GetComponent<Canvas>();
+            DisableGameMenuCanvas();
+        }
+        else
+        {
+            gameMenuCanvas.gameObject.SetActive(false);
+        }
+
+    }    
+
     public void EnableOrderCanvas()
     {
         orderCanvas.gameObject.SetActive(true);
@@ -92,7 +135,6 @@ public class GameController : MonoBehaviour
         if (orderCanvas != null)
         {
             orderCanvas.gameObject.SetActive(false);
-            print("Disabled OrderCanvas successfully");
         }
         else
         {
@@ -167,6 +209,11 @@ public class GameController : MonoBehaviour
     //Prints the first dialogue paragraph that the character has.
     public void HandleDialogue()
     {
+        if (dialogueBox == null)
+        {
+            print("dialogueBox null");
+            dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
+        }
         dialogueBox.text = characterData.IntroDialogueParagraphs[0];
         dialogueCounter = 1;
     }
@@ -206,6 +253,8 @@ public class GameController : MonoBehaviour
             {
                 DisableConversationCanvas();
                 EnableOrderCanvas();
+                EnableWorkingMenuCanvas();
+                EnableGameMenuCanvas();
             }
         }
     }
@@ -245,6 +294,8 @@ public class GameController : MonoBehaviour
             {
                 DisableConversationCanvas();
                 EnableOrderCanvas();
+                EnableWorkingMenuCanvas();
+                EnableGameMenuCanvas();                
             }
         }
     }
@@ -294,6 +345,8 @@ public class GameController : MonoBehaviour
             {
                 DisableConversationCanvas();
                 EnableOrderCanvas();
+                EnableWorkingMenuCanvas();
+                EnableGameMenuCanvas();                 
             }
         }
     }

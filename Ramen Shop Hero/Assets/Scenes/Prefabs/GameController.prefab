@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4858700194681530468
+--- !u!1 &4666942396368479758
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4858700194681530467}
-  - component: {fileID: 4858700194681530466}
-  - component: {fileID: 4858700194681530465}
-  - component: {fileID: 4858700194681530464}
+  - component: {fileID: 4666942396368479753}
+  - component: {fileID: 4666942396368479752}
+  - component: {fileID: 4666942396368479755}
+  - component: {fileID: 4666942396368479754}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4858700194681530467
+--- !u!4 &4666942396368479753
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858700194681530468}
+  m_GameObject: {fileID: 4666942396368479758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,38 +33,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4858700194681530466
+--- !u!114 &4666942396368479752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858700194681530468}
+  m_GameObject: {fileID: 4666942396368479758}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 478093f7059481f428f97047c0b03506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  conversationCanvas: {fileID: 0}
---- !u!114 &4858700194681530465
+  orderCanvas: {fileID: 2837258907316261791, guid: 09f5584f44d1619fea44b3a4e82a8ae3,
+    type: 3}
+  conversationCanvas: {fileID: 9152220551700983352, guid: 1ef3b9f398f7cff3999c857a188f7414,
+    type: 3}
+  workingMenuCanvas: {fileID: 7419432401430869206, guid: 317303da2bc306656b5b9d02c79c3df3,
+    type: 3}
+  cookingPreludeCanvas: {fileID: 5337111937345299039, guid: a1373221784ad714c8b65810f36c5f94,
+    type: 3}
+  ingredientCanvas: {fileID: 7996343328802154228, guid: 694002b9d910f828996844ab05cde037,
+    type: 3}
+  postRamenCanvas: {fileID: 4661806651739207029, guid: 4617f1e55072549a6871e35e3d389332,
+    type: 3}
+  levelFinishedCanvas: {fileID: 6502182398160988088, guid: a0e30324879863edcac775f5d72a4bfb,
+    type: 3}
+  gameMenuCanvas: {fileID: 928050906866568436, guid: e025a1e636e7f5844a88e733d286b789,
+    type: 3}
+--- !u!114 &4666942396368479755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858700194681530468}
+  m_GameObject: {fileID: 4666942396368479758}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3399a5c130beb714db5a3e09c38bc0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4858700194681530464
+--- !u!114 &4666942396368479754
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4858700194681530468}
+  m_GameObject: {fileID: 4666942396368479758}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ce78a5aa9242134c9e02f7c97c6928d, type: 3}
@@ -74,25 +89,24 @@ MonoBehaviour:
   FlavourSprite: {fileID: 0}
   ParagraphToPicture: -1
   IntroDialogueParagraphs:
-  - His hair is the same colour as the floor he steps on. He slouches ever so slightly
+  - His hair is the same colour as the wooden floor. He slouches ever so slightly
     in his gait.
-  - He carries a suitcase and wears a flat blue suit with a uniform red tie, his
-    square shoulders hunched forward as if he was about to fall over from carrying
-    the weariness of the world.
+  - He carries a suitcase and wears a flat blue suit with a red tie, his square shoulders
+    hunched forward as if he was about to fall over from carrying the weight of the
+    world.
   - Wearing sunglasses, you can't see where he is looking at, but he does not seem
     to be in a hurry to place his order.
-  - You remember the man as Takashi Honda, a man whom you've met a few years ago
-    at this very place. He now sits on the same stool as the one where he first sat
-    on when you first met him, and he does not move or respond to your head nod.
-  - As you recall it, Takashi used to date a young woman when you met him for the
-    first time, and they were so in love with each other that Takashi would stay
-    at the Ramen Shop for hours after he was done eating, just to talk about her
-    with you.
+  - You remember the man as Takashi Honda, a man whom you met a few years ago at
+    this very place. He now sits at the same place where you took his first order.
+    He does not move or respond to your nod.
+  - As you recall it, Takashi used to date a young woman at the time, and they were
+    so in love with each other that Takashi would stay at the Ramen Shop for hours
+    after he was done eating, just to talk about her with you.
   - You smile at now nearly faded memories, and you continue swiping the counter,
     minding your own business while staying alert to his presence.
   - You think to yourself how odd it is for two people who have shared such strong
     emotions of their love for another person to be then mutually so withdrawn in
-    that ensuing passage of time, as if two souls drifting like fleet wood on a sea
+    the ensuing passage of time, as if two souls drifting like fleetwood on a sea
     of twinkling fireflies.
   - "The words \u201Clonely men caught staring at the great blaze\u201D echo in your
     mind."
@@ -119,18 +133,4 @@ MonoBehaviour:
     The memories of your girlfriend are important, but there are reasons in life
     to rejoice more than our losses, reasons which, as small as a cup of ramen, are
     worth living and fighting for."'
-  SpecialDialogueParagraphs:
-  - Suddenly, as if he supernaturally took notice of his own presence in your deep
-    thoughts,  waves at you with a frangible smile.Suddenly, as if he supernaturally
-    took notice of his own presence in your deep thoughts,  waves at you with a frangible
-    smile.
-  - Suddenly, as if he supernaturally took notice of his own presence in your deep
-    thoughts,  waves at you with a frangible smile.
-  - Suddenly, as if he supernaturally took notice of his own presence in your deep
-    thoughts,  waves at you with a frangible smile.
-  - Suddenly, as if he supernaturally took notice of his own presence in your deep
-    thoughts,  waves at you with a frangible smile.Suddenly, as if he supernaturally
-    took notice of his own presence in your deep thoughts,  waves at you with a frangible
-    smile.
-  - Suddenly, as if he supernaturally took notice of his own presence in your deep
-    thoughts,  waves at you with a frangible smile.
+  SpecialDialogueParagraphs: []

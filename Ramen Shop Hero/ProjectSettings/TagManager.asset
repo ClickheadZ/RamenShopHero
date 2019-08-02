@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Textbox
   - OrderCanvas
+  - MenuCanvas
   layers:
   - Default
   - TransparentFX
