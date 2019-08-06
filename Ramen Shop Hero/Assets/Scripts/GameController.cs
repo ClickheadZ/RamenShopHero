@@ -16,11 +16,11 @@ public class GameController : MonoBehaviour
     [SerializeField] Canvas ingredientCanvas;
     [SerializeField] Canvas postRamenCanvas;
     [SerializeField] Canvas levelFinishedCanvas;
-    [SerializeField] Canvas gameMenuCanvas; 
-       
-    #endregion
+    [SerializeField] Canvas gameMenuCanvas;
 
+    #endregion
     private CharacterData characterData;
+    private CanvasManipulator canvasManipulator;
 
     #region Dialogue Variables
     private int dialogueCounter;
@@ -39,30 +39,29 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        orderCanvas = GameObject.Find("OrderCanvas").GetComponent<Canvas>();
-        conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
-        workingMenuCanvas = GameObject.Find("WorkingMenuCanvas").GetComponent<Canvas>();
-        cookingPreludeCanvas = GameObject.Find("CookingPreludeCanvas").GetComponent<Canvas>();
-        ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
-        postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
-        levelFinishedCanvas = GameObject.Find("LevelFinishedCanvas").GetComponent<Canvas>();
-        gameMenuCanvas = GameObject.Find("GameMenuCanvas").GetComponent<Canvas>();
+        //orderCanvas = GameObject.Find("OrderCanvas").GetComponent<Canvas>();
+        //conversationCanvas = GameObject.Find("ConversationCanvas").GetComponent<Canvas>();
+        //workingMenuCanvas = GameObject.Find("WorkingMenuCanvas").GetComponent<Canvas>();
+        //cookingPreludeCanvas = GameObject.Find("CookingPreludeCanvas").GetComponent<Canvas>();
+        //ingredientCanvas = GameObject.Find("IngredientCanvas").GetComponent<Canvas>();
+        //postRamenCanvas = GameObject.Find("PostRamenCanvas").GetComponent<Canvas>();
+        //levelFinishedCanvas = GameObject.Find("LevelFinishedCanvas").GetComponent<Canvas>();
+        //gameMenuCanvas = GameObject.Find("GameMenuCanvas").GetComponent<Canvas>();
 
-
+        canvasManipulator = GetComponent<CanvasManipulator>();
         characterData = GetComponent<CharacterData>();
-        dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
-        noddingPaused = false;
-        characterCounter = 0;
-        maxCharacterCount = 550;
-        flavourSprite = characterData.FlavourSprite;
 
-        ingredientNumber = -1;
-    
-        DisableConversationCanvas();
-        DisableCookingPreludeCanvas();
-        DisableIngredientCanvas();
-        DisablePostRamenCanvas();
-        DisableLevelFinishedCanvas();
+        ingredientNumber = -1; //move this somewhere else when u can
+
+        //Setup for level
+        canvasManipulator.EnableCanvas(orderCanvas);
+        canvasManipulator.EnableCanvas(gameMenuCanvas);
+        canvasManipulator.EnableCanvas(workingMenuCanvas);
+        canvasManipulator.DisableCanvas(conversationCanvas);
+        canvasManipulator.DisableCanvas(cookingPreludeCanvas);
+        canvasManipulator.DisableCanvas(ingredientCanvas);
+        canvasManipulator.DisableCanvas(postRamenCanvas);
+        canvasManipulator.DisableCanvas(levelFinishedCanvas);
     }
 
     void Update()
@@ -86,118 +85,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    #region Canvas manipulation
-
-    public void EnableWorkingMenuCanvas()
-    {
-        workingMenuCanvas.gameObject.SetActive(true);
-    }
-
-    public void DisableWorkingMenuCanvas()
-    {
-        if (workingMenuCanvas == null)
-        {
-            workingMenuCanvas = GameObject.Find("WorkingMenuCanvas").GetComponent<Canvas>();
-            DisableWorkingMenuCanvas();
-        }
-        else
-        {
-            workingMenuCanvas.gameObject.SetActive(false);
-        }
-
-    }
-    public void EnableGameMenuCanvas()
-    {
-        gameMenuCanvas.gameObject.SetActive(true);
-    }
-
-    public void DisableGameMenuCanvas()
-    {
-        if (gameMenuCanvas == null)
-        {
-            gameMenuCanvas = GameObject.Find("GameMenuCanvas").GetComponent<Canvas>();
-            DisableGameMenuCanvas();
-        }
-        else
-        {
-            gameMenuCanvas.gameObject.SetActive(false);
-        }
-
-    }    
-
-    public void EnableOrderCanvas()
-    {
-        orderCanvas.gameObject.SetActive(true);
-    }
-
-    public void DisableOrderCanvas()
-    {
-        if (orderCanvas != null)
-        {
-            orderCanvas.gameObject.SetActive(false);
-        }
-        else
-        {
-            print("Order canvas null");
-        }
-
-    }
-
-    public void EnableConversationCanvas()
-    {
-        conversationCanvas.gameObject.SetActive(true);
-        currentScreen = CurrentScreen.Dialogue;
-    }
-
-    public void DisableConversationCanvas()
-    {
-        conversationCanvas.gameObject.SetActive(false);
-    }
-
-    public void EnableCookingPreludeCanvas()
-    {
-        cookingPreludeCanvas.gameObject.SetActive(true);
-        currentScreen = CurrentScreen.CookingPrelude;
-    }
-
-    public void DisableCookingPreludeCanvas()
-    {
-        cookingPreludeCanvas.gameObject.SetActive(false);
-    }
-
-    public void EnableIngredientCanvas()
-    {
-        ingredientCanvas.gameObject.SetActive(true);
-        currentScreen = CurrentScreen.Ingredient;
-    }
-
-    public void DisableIngredientCanvas()
-    {
-        ingredientCanvas.gameObject.SetActive(false);
-    }
-
-    public void EnablePostRamenCanvas()
-    {
-        postRamenCanvas.gameObject.SetActive(true);
-        currentScreen = CurrentScreen.PostRamen;
-    }
-
-    public void DisablePostRamenCanvas()
-    {
-        postRamenCanvas.gameObject.SetActive(false);
-    }
-
-    public void EnableLevelFinishedCanvas()
-    {
-        levelFinishedCanvas.gameObject.SetActive(true);
-        currentScreen = CurrentScreen.LevelFinished;
-    }
-
-    public void DisableLevelFinishedCanvas()
-    {
-        levelFinishedCanvas.gameObject.SetActive(false);
-    }
-    #endregion
 
     //Test function
     public void ShowScore()
@@ -209,55 +96,16 @@ public class GameController : MonoBehaviour
     //Prints the first dialogue paragraph that the character has.
     public void HandleDialogue()
     {
-        if (dialogueBox == null)
-        {
-            print("dialogueBox null");
-            dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
-        }
+        dialogueBox = GameObject.FindGameObjectWithTag("Textbox").GetComponent<Text>();
+        noddingPaused = false;
+        characterCounter = 0;
+        maxCharacterCount = 550;
+        flavourSprite = characterData.FlavourSprite;
+
         dialogueBox.text = characterData.IntroDialogueParagraphs[0];
         dialogueCounter = 1;
     }
 
-    //Prints the next dialogue paragraph. If the dialogueCounter matches the paraph we want a picture for, waits a few seconds before showing the sprite
-    public void NodDialogue()
-    {
-        if(noddingPaused == false)
-        {
-            if (dialogueCounter < characterData.IntroDialogueParagraphs.Length)
-            {
-                dialogueBox.text = dialogueBox.text + "\n" + characterData.IntroDialogueParagraphs[dialogueCounter];
-
-                if (dialogueCounter == characterData.ParagraphToPicture)
-                {
-                    StartCoroutine(WaitingBeforeClick());
-
-                    IEnumerator WaitingBeforeClick()
-                    {
-                        noddingPaused = true;
-                        yield return new WaitForSecondsRealtime(4);
-                        noddingPaused = false;
-                    }
-
-                    StartCoroutine(WaitingForPicture());
-
-                    IEnumerator WaitingForPicture()
-                    {
-                        //SHOW flavourSprite HERE
-                        yield return new WaitForSecondsRealtime(3);
-                        //HIDE flavourSprite HERE
-                    }
-                }
-
-                dialogueCounter++;
-            } else
-            {
-                DisableConversationCanvas();
-                EnableOrderCanvas();
-                EnableWorkingMenuCanvas();
-                EnableGameMenuCanvas();
-            }
-        }
-    }
 
     public void SingleNodDialogue()
     {
@@ -292,15 +140,15 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                DisableConversationCanvas();
-                EnableOrderCanvas();
-                EnableWorkingMenuCanvas();
-                EnableGameMenuCanvas();                
+                canvasManipulator.DisableCanvas(conversationCanvas);
+                canvasManipulator.EnableCanvas(orderCanvas);
+                canvasManipulator.EnableCanvas(workingMenuCanvas);
+                canvasManipulator.EnableCanvas(gameMenuCanvas);             
             }
         }
     }
 
-    public void BetterNodDialogue()
+    public void MultiNodDialogue()
     {
         
         if (noddingPaused == false)
@@ -343,10 +191,10 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                DisableConversationCanvas();
-                EnableOrderCanvas();
-                EnableWorkingMenuCanvas();
-                EnableGameMenuCanvas();                 
+                canvasManipulator.DisableCanvas(conversationCanvas);
+                canvasManipulator.EnableCanvas(orderCanvas);
+                canvasManipulator.EnableCanvas(workingMenuCanvas);
+                canvasManipulator.EnableCanvas(gameMenuCanvas);
             }
         }
     }
@@ -379,8 +227,8 @@ public class GameController : MonoBehaviour
             Debug.Log("No ingredient selected!");
         } else
         {
-            DisableIngredientCanvas();
-            EnablePostRamenCanvas();
+            canvasManipulator.DisableCanvas(ingredientCanvas);
+            canvasManipulator.EnableCanvas(postRamenCanvas);
         }
     }
 
