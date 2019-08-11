@@ -67,6 +67,11 @@
     <Compile Include="Assets\0ldVersion\Scripts\GameController.cs" />
     <Compile Include="Assets\0ldVersion\Scripts\SceneSelector.cs" />
     <Compile Include="Assets\0ldVersion\Scripts\Scoring.cs" />
+    <Compile Include="Assets\Scripts\ActionLocation.cs" />
+    <Compile Include="Assets\Scripts\CustomerAI.cs" />
+    <Compile Include="Assets\Scripts\CustomerSpawner.cs" />
+    <Compile Include="Assets\Scripts\DataContainer.cs" />
+    <Compile Include="Assets\Scripts\EntityTools.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Documents/GIT REPOS/Ramen Hero/RamenHero/Ramen Shop Hero 3D/Ramen Shop Hero 3D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
