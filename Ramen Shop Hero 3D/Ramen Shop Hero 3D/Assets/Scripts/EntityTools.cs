@@ -17,7 +17,7 @@ using UnityEngine.AI;
 public class EntityTools : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private bool atLocation;
+    public bool atLocation;
     private ActionLocation location;
     private DataContainer dataContainer;
     private Vector2 position2d; //the position of this entity on a 2D plane, disregarding the Y axis (height)
@@ -43,15 +43,15 @@ public class EntityTools : MonoBehaviour
         agent.SetDestination(location.transform.position);
     }
 
-    //Finds the closest available location to path to
-    public ActionLocation FindClosestLocation()
+    //Finds the closest location within a list of locations
+    public ActionLocation FindClosestLocation(List<ActionLocation> locations)
     {
         ActionLocation closestLocation = null;
         float sqrClosestDistance = Mathf.Infinity;
 
-        for (int i = 0; i < dataContainer.availableLocations.Count; ++i)
+        for (int i = 0; i < locations.Count; ++i)
         {
-            ActionLocation nextLocation = dataContainer.availableLocations[i];
+            ActionLocation nextLocation = locations[i];
 
             Vector3 nextLocationPosition = nextLocation.transform.position;
             Vector3 vectorToLocation = nextLocationPosition - transform.position;
@@ -64,17 +64,21 @@ public class EntityTools : MonoBehaviour
             }
         }
 
+        Debug.Log("The closest available location to " + this.name + " is " + closestLocation.gameObject.name);
         return closestLocation;
     }
 
-    public void WaitForTime(int time)
+    public void WaitAndGo(int idleTime, ActionLocation destination)
     {
-        StartCoroutine(WaitingForSeconds());
+        StartCoroutine(WaitThenGo());
 
-        IEnumerator WaitingForSeconds()
+        IEnumerator WaitThenGo()
         {
-            yield return new WaitForSecondsRealtime(time);
+            yield return new WaitForSecondsRealtime(idleTime);
+
+            PathTo(destination);
         }
+        
     }
     
     void Update()
@@ -89,10 +93,10 @@ public class EntityTools : MonoBehaviour
                 if(location.isOccupied)
                 {
                     Debug.Log(this.name + " is recalculating path");
-                    PathTo(FindClosestLocation());
+                    PathTo(FindClosestLocation(dataContainer.availableChairs)); //this works for customer only, will have to refactor a bit for player and assistant cooks
                 }
 
-                if(position2d == location.position2d)
+                if(position2d == location.position2d && location.gameObject.tag != "Customer Despawner")
                 {
                     atLocation = true;
                     location.SetLocationOccupied();

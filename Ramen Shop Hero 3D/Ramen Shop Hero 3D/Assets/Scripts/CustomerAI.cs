@@ -15,25 +15,45 @@ public class CustomerAI : MonoBehaviour
     [SerializeField] int IdleTime;
 
     private EntityTools customerTools;
-    private ActionLocation entrance;
     private DataContainer dataContainer; //may not be needed?
 
     void Start()
     {
         customerTools = GetComponent<EntityTools>();
-        entrance = GameObject.FindWithTag("Entrance").GetComponent<ActionLocation>();
         dataContainer = GameObject.FindWithTag("Data Container").GetComponent<DataContainer>();
-        IdleTime = 5;
 
-        //Look through list of chairs instead in future
-        if(dataContainer.availableLocations.Count > 0)
+        if(dataContainer.availableChairs.Count > 0)
         {
-            customerTools.PathTo(customerTools.FindClosestLocation());
+            customerTools.PathTo(customerTools.FindClosestLocation(dataContainer.availableChairs));
         }
 
-        //customerEntity.WaitForTime(IdleTime);
-
-        //customerEntity.PathTo(entrance);
+        //customerTools.WaitAndGo(IdleTime, PickRandomDespawner());
     }
-    
+
+    //Picks one of two available Customer Despawners at random
+    private ActionLocation PickRandomDespawner()
+    {
+        int despawnerRng = Random.Range(0, 2);
+        ActionLocation despawnerChoice;
+
+        if (despawnerRng == 0)
+        {
+            despawnerChoice = GameObject.FindGameObjectsWithTag("Customer Despawner")[0].GetComponent<ActionLocation>();
+        }
+        else
+        {
+            despawnerChoice = GameObject.FindGameObjectsWithTag("Customer Despawner")[1].GetComponent<ActionLocation>();
+        }
+
+        return despawnerChoice;
+    }
+
+    void Update()
+    {
+        if(customerTools.atLocation)
+        {
+            customerTools.WaitAndGo(IdleTime, PickRandomDespawner());
+        }
+    }
+
 }

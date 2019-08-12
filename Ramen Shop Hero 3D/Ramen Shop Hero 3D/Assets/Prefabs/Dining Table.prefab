@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1001077367472416248}
   m_Layer: 0
   m_Name: Chair4
-  m_TagString: Untagged
+  m_TagString: Chair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 0
+  position2d: {x: 0, y: 0}
 --- !u!1 &4029011357289912577
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +67,7 @@ GameObject:
   - component: {fileID: 907272162005613608}
   m_Layer: 0
   m_Name: Chair1
-  m_TagString: Untagged
+  m_TagString: Chair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 0
+  position2d: {x: 0, y: 0}
 --- !u!1 &6320622555486667616
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +121,7 @@ GameObject:
   - component: {fileID: 6890024232825575420}
   m_Layer: 0
   m_Name: Chair2
-  m_TagString: Untagged
+  m_TagString: Chair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -159,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 0
+  position2d: {x: 0, y: 0}
 --- !u!1 &6594752526568504675
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +175,7 @@ GameObject:
   - component: {fileID: 6737080643728133149}
   m_Layer: 0
   m_Name: Chair3
-  m_TagString: Untagged
+  m_TagString: Chair
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,6 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOccupied: 0
+  position2d: {x: 0, y: 0}
 --- !u!1 &8318994434086769489
 GameObject:
   m_ObjectHideFlags: 0

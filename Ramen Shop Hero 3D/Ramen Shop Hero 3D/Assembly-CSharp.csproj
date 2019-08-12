@@ -69,6 +69,7 @@
     <Compile Include="Assets\0ldVersion\Scripts\Scoring.cs" />
     <Compile Include="Assets\Scripts\ActionLocation.cs" />
     <Compile Include="Assets\Scripts\CustomerAI.cs" />
+    <Compile Include="Assets\Scripts\CustomerDespawner.cs" />
     <Compile Include="Assets\Scripts\CustomerSpawner.cs" />
     <Compile Include="Assets\Scripts\DataContainer.cs" />
     <Compile Include="Assets\Scripts\EntityTools.cs" />

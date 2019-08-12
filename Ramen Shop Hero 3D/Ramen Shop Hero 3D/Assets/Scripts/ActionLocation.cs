@@ -20,8 +20,8 @@ public class ActionLocation : MonoBehaviour
     void Awake()
     {
         dataContainer = GameObject.FindWithTag("Data Container").GetComponent<DataContainer>();
-        SetLocationAvailable();
         position2d = new Vector2(transform.position.x, transform.position.z);
+        SetLocationAvailable();
     }
 
     public void SetLocationOccupied()
@@ -29,6 +29,11 @@ public class ActionLocation : MonoBehaviour
         Debug.Log(this.name + " is now occupied");
         isOccupied = true;
         dataContainer.availableLocations.Remove(this);
+
+        if(this.gameObject.tag == "Chair")
+        {
+            dataContainer.availableChairs.Remove(this);
+        }
     }
 
     public void SetLocationAvailable()
@@ -36,5 +41,10 @@ public class ActionLocation : MonoBehaviour
         Debug.Log(this.name + " is now available");
         isOccupied = false;
         dataContainer.availableLocations.Add(this);
+        
+        if(this.gameObject.tag == "Chair")
+        {
+            dataContainer.availableChairs.Add(this);
+        }
     }
 }
